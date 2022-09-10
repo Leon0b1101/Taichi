@@ -3,7 +3,7 @@ import taichi as ti
 
 ti.init(arch=ti.gpu)
 
-n = 320
+n = 300
 pixels = ti.field(dtype=float, shape=(n * 2, n))
 
 
@@ -14,7 +14,7 @@ def complex_sqr(z):
 
 @ti.kernel
 def paint(t: float):
-    for i, j in pixels:  # Parallelized over all pixels
+    for i, j in pixels:
         c = ti.Vector([-0.8, ti.cos(t) * 0.2])
         z = ti.Vector([i / n - 1, j / n - 0.5]) * 2
         iterations = 0
